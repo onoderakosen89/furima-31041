@@ -12,6 +12,7 @@ class User < ApplicationRecord
     validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'カタカナを使用してください' } 
     validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'カタカナを使用してください' } 
   end
+  
   has_many :products
   has_many :orders
 end
