@@ -45,5 +45,35 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
+        it 'パスワードに英小文字が含まれない場合無効な状態であること' do
+          user = User.new(password: '1'+'A' * 5, password_confirmation: '1A'+'a' * 3)
+          user.valid?
+          expect(user.errors[:password]).to include('は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります')
+        end
+      
+        it 'パスワードに英大文字が含まれない場合無効な状態であること' do
+          user = User.new(password: '1'+'a' * 5, password_confirmation: '1A'+'a' * 3)
+          user.valid?
+          expect(user.errors[:password]).to include('は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります')
+        end
+      
+        it 'パスワードに数字が含まれない場合無効な状態であること' do
+          user = User.new(password: 'A'+'a' * 5, password_confirmation: '1A'+'a' * 3)
+          user.valid?
+          expect(user.errors[:password]).to include('は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります')
+        end
+      
+        it 'パスワードが5文字以下なら無効な状態であること' do
+          user = User.new(password: '1A'+'a' * 3, password_confirmation: '1A'+'a' * 3)
+          user.valid?
+          expect(user.errors[:password]).to include('は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります')
+        end
+      
+        it 'パスワードが13文字以上なら無効な状態であること' do
+          user = User.new(password: '1A'+'a' * 11, password_confirmation: '1A'+'a' * 11)
+          user.valid?
+          expect(user.errors[:password]).to include('は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります')
+        end
   end
+
 end
