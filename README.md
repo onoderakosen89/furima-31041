@@ -33,11 +33,11 @@ has_many :orders
 ### Association
 has_one :order
 belongs_to :user
-belongs_to :categories
-belongs_to :item_conditions
-belongs_to :shipping_areas
+belongs_to :category
+belongs_to :item_condition
+belongs_to :shipping_area
 belongs_to :shipping_date
-belongs_to :delivery_charges
+belongs_to :delivery_charge
 
 
 ## Ordersテーブル
