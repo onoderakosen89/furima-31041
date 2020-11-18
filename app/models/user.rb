@@ -13,10 +13,10 @@ class User < ApplicationRecord
     VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)\w{6,12}\z/.freeze
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
 
-    validates :first_name, presence: true, format: { with: VALID_ZENKAKU_REGEX, message: '全角文字を使用してください' }
-    validates :family_name, presence: true, format: { with: VALID_ZENKAKU_REGEX, message: '全角文字を使用してください' }
-    validates :first_name_kana, presence: true, format: { with: VALID_KANA_REGEX, message: 'カタカナを使用してください' }
-    validates :family_name_kana, presence: true, format: { with: VALID_KANA_REGEX, message: 'カタカナを使用してください' }
+    validates :first_name, format: { with: VALID_ZENKAKU_REGEX, message: '全角文字を使用してください' }
+    validates :family_name, format: { with: VALID_ZENKAKU_REGEX, message: '全角文字を使用してください' }
+    validates :first_name_kana, format: { with: VALID_KANA_REGEX, message: 'カタカナを使用してください' }
+    validates :family_name_kana, format: { with: VALID_KANA_REGEX, message: 'カタカナを使用してください' }
   end
   validates :password, presence: true,
                        format: { with: VALID_PASSWORD_REGEX,
