@@ -4,6 +4,12 @@ class ProductsController < ApplicationController
     @products = Product.order('created_at DESC')
   end
 
+  def edit
+  end
+
+  def show
+  end
+
   def new
     @product = Product.new
   end
