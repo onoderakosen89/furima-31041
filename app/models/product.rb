@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :shipping_date
   belongs_to :delivery_charge
+  has_one_attached :image
 
 
 validates :product_name, presence: true
@@ -16,4 +17,5 @@ validates :category_id, numericality: { other_than: 1 }
 validates :shipping_area_id, numericality: { other_than: 1 }
 validates :shipping_date_id, numericality: { other_than: 1 }
 validates :delivery_charge_id, numericality: { other_than: 1 }
+
 end
