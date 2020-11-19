@@ -59,19 +59,18 @@ RSpec.describe Product, type: :model do
       it '価格の範囲が、¥300以上でないと登録できない' do
         @product.price = '299'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price must be greater than 300")
+        expect(@product.errors.full_messages).to include('Price must be greater than 300')
       end
       it '価格の範囲が、¥9,999,999以下でないと登録できない' do
         @product.price = '10000000'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price must be less than 9999999")
+        expect(@product.errors.full_messages).to include('Price must be less than 9999999')
       end
       it '価格は半角数字でないと登録できない' do
         @product.price = '百'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is not a number")
+        expect(@product.errors.full_messages).to include('Price is not a number')
       end
     end
-    
   end
 end

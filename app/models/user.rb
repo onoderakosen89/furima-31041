@@ -4,8 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  
-
   with_options presence: true do
     VALID_ZENKAKU_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
     VALID_KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
@@ -16,8 +14,8 @@ class User < ApplicationRecord
     validates :family_name,         format: { with: VALID_ZENKAKU_REGEX, message: '全角文字を使用してください' }
     validates :first_name_kana,     format: { with: VALID_KANA_REGEX, message: 'カタカナを使用してください' }
     validates :family_name_kana,    format: { with: VALID_KANA_REGEX, message: 'カタカナを使用してください' }
-    validates :password,           format: { with: VALID_PASSWORD_REGEX,
-                                    message: 'は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります' }
+    validates :password, format: { with: VALID_PASSWORD_REGEX,
+                                   message: 'は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります' }
     validates :nickname
     validates :birthday
   end

@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  
+
   belongs_to :user
   belongs_to :category
   belongs_to :product_condition
@@ -15,7 +15,7 @@ class Product < ApplicationRecord
     validates :product_info
     validates :image,                     unless: :was_attached?
     validates :price,                     numericality: { only_integer: true,
-                                          greater_than: 300, less_than: 9999999}
+                                                          greater_than: 300, less_than: 9_999_999 }
     validates :product_condition_id, numericality:  { other_than: 1 }
     validates :category_id, numericality:           { other_than: 1 }
     validates :shipping_area_id, numericality:      { other_than: 1 }
@@ -23,6 +23,6 @@ class Product < ApplicationRecord
     validates :delivery_charge_id, numericality:    { other_than: 1 }
   end
   def was_attached?
-    self.image.attached?
+    image.attached?
   end
 end
