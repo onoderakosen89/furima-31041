@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   end
   root to: "products#index"
   resources :products
+  resources :users
 end
